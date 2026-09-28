@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoLastMile | Correios</title>
+<style>
+:root{--blue:#073b67;--navy:#052d50;--yellow:#ffcc00;--green:#159447;--mint:#e9f7ef;--ink:#12324a;--muted:#62798b;--line:#dce6ec;--bg:#f5f8fa}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+header{height:76px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 5%;box-shadow:0 2px 12px #1232;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800;color:var(--blue)}.brand-mark{display:inline-flex;align-items:center;justify-content:center;width:42px;height:38px;background:var(--yellow);clip-path:polygon(0 50%,28% 0,100% 0,72% 50%,100% 100%,28% 100%);color:var(--blue);font-weight:900}
+.brand small{display:block;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.2px}
+nav{display:flex;gap:25px}nav a{color:var(--ink);text-decoration:none;font-weight:600;font-size:14px}nav a:hover{color:var(--green)}
+button{border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;transition:.2s}button:hover{filter:brightness(.96);transform:translateY(-1px)}
+.primary{background:var(--green);color:white}.secondary{background:#eaf1f6;color:var(--blue)}.yellow{background:var(--yellow);color:var(--blue)}
+.hero{background:linear-gradient(110deg,#062f52 0%,#0b4b70 68%,#0c7154 100%);color:white;padding:58px 5% 48px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:480px;height:480px;border:1px solid #ffffff22;border-radius:50%;right:-70px;top:-130px;box-shadow:0 0 0 45px #ffffff08,0 0 0 95px #ffffff08}
+.hero-inner{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;z-index:1}
+.eyebrow{color:#9ee6b4;font-size:13px;text-transform:uppercase;letter-spacing:2px;font-weight:800}
+h1{font-size:clamp(34px,4vw,56px);line-height:1.05;margin:14px 0 18px;max-width:650px}h1 span{color:#8de2a6}
+.hero p{font-size:17px;line-height:1.6;color:#e1edf4;max-width:590px}.actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.route-art{height:270px;border:1px solid #ffffff38;border-radius:24px;background:linear-gradient(140deg,#ffffff17,#ffffff05);position:relative;overflow:hidden;padding:20px}
+.map-lines{position:absolute;inset:0;background-image:linear-gradient(25deg,transparent 46%,#ffffff18 47%,#ffffff18 48%,transparent 49%),linear-gradient(115deg,transparent 46%,#ffffff18 47%,#ffffff18 48%,transparent 49%);background-size:65px 65px;opacity:.8}
+.route-path{position:absolute;left:12%;top:22%;width:74%;height:60%;border:5px solid #92e8ad;border-left-color:transparent;border-bottom-color:#92e8ad;border-radius:45% 30% 35% 25%;transform:rotate(-12deg);filter:drop-shadow(0 0 8px #76dba2)}
+.pin{position:absolute;background:var(--yellow);color:var(--blue);font-size:20px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);width:35px;height:35px;display:grid;place-items:center;font-weight:900}.pin b{transform:rotate(45deg)}.pin.one{left:16%;top:25%}.pin.two{left:54%;top:58%}.pin.three{right:13%;top:22%}
+.van{position:absolute;right:24%;bottom:25px;font-size:64px;filter:drop-shadow(0 8px 8px #001a)}
+main{max-width:1200px;margin:0 auto;padding:34px 5% 60px}.section-title{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:18px}.section-title h2{margin:0;font-size:26px;color:var(--blue)}.section-title p{margin:7px 0 0;color:var(--muted)}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0 34px}.metric{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 4px 16px #10321a05}.metric-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}.metric-icon{font-size:22px}.metric strong{display:block;font-size:30px;color:var(--blue);margin:14px 0 4px}.metric small{color:var(--green);font-weight:700}
+.workspace{display:grid;grid-template-columns:1.25fr .75fr;gap:20px}.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 5px 18px #10321a06}.panel h3{margin:0 0 8px;color:var(--blue);font-size:20px}.sub{color:var(--muted);font-size:13px;margin:0 0 20px;line-height:1.5}
+label{font-size:13px;font-weight:700;display:block;margin:12px 0 7px}input,select{width:100%;padding:12px 13px;border:1px solid #cbd9e2;border-radius:10px;font:inherit;background:#fff;color:var(--ink)}input:focus,select:focus{outline:2px solid #15944744;border-color:var(--green)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.form-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.table-wrap{overflow-x:auto;margin-top:20px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:12px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}td button{padding:6px 9px;border-radius:8px}
+.route-map{height:220px;border-radius:14px;background:#eaf3f5;position:relative;overflow:hidden;margin:16px 0;border:1px solid #d8e6e9}
+.route-map:before{content:"";position:absolute;inset:-30px;background:repeating-linear-gradient(28deg,transparent 0 35px,#fff 36px 41px,transparent 42px 72px),repeating-linear-gradient(115deg,transparent 0 50px,#d3e3e6 51px 56px,transparent 57px 100px)}
+.map-water{position:absolute;width:48%;height:130%;right:-12%;top:-10%;background:#c9e8ef;transform:rotate(24deg);border-radius:40%}
+.map-route{position:absolute;left:13%;top:25%;width:68%;height:55%;border:4px solid var(--green);border-top-color:transparent;border-radius:40% 25% 45% 20%;transform:rotate(-15deg)}
+.map-dot{position:absolute;width:22px;height:22px;background:var(--blue);border:4px solid white;border-radius:50%;box-shadow:0 2px 6px #0002}.d1{left:13%;top:28%}.d2{left:42%;top:62%}.d3{right:17%;top:26%}
+.map-caption{position:absolute;bottom:12px;left:12px;background:white;padding:7px 10px;border-radius:8px;font-size:11px;font-weight:700}
+.comparison{display:grid;grid-template-columns:1fr 1fr;gap:10px}.compare{background:#f4f7f9;padding:14px;border-radius:12px}.compare span{font-size:12px;color:var(--muted)}.compare strong{display:block;font-size:23px;margin-top:5px}.compare.green{background:var(--mint)}.compare.green strong{color:var(--green)}
+.progress{height:10px;background:#e6edf0;border-radius:99px;overflow:hidden;margin:15px 0 7px}.progress div{height:100%;width:28%;background:var(--green);border-radius:99px;transition:width .3s}
+.tip{margin-top:18px;background:#f0faf3;border:1px solid #ccebd5;border-radius:12px;padding:14px;font-size:13px;line-height:1.5;color:#245a3a}
+footer{background:var(--navy);color:white;padding:28px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}footer p{margin:5px 0;color:#c8dbe8;font-size:13px}
+.notice{font-size:11px;color:#9db4c4;margin-top:12px}
+@media(max-width:850px){nav{display:none}.hero-inner,.workspace{grid-template-columns:1fr}.route-art{height:230px}.metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){header{padding:0 4%;height:66px}.brand{font-size:18px}.hero{padding:40px 5%}.metrics{gap:9px}.metric{padding:14px}.metric strong{font-size:24px}.form-grid{grid-template-columns:1fr}.panel{padding:17px}main{padding:25px 4% 40px}}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3dGqYxF8QqQ5J6Y5Jv5Q5q0pK0k7M=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+</head>
+<body>
+<header>
+ <div class="brand"><span class="brand-mark">C</span><div>EcoLastMile <small>Rotas inteligentes e sustentáveis</small></div></div>
+ <nav><a href="#inicio">Início</a><a href="#como">Como funciona</a><a href="#painel">Painel</a><a href="#co2">Impacto ambiental</a></nav>
+ <button class="yellow" onclick="document.querySelector('#painel').scrollIntoView({behavior:'smooth'})">Acessar sistema ↗</button>
+</header>
+<section class="hero" id="inicio">
+ <div class="hero-inner">
+  <div><div class="eyebrow">Logística inteligente e sustentável</div><h1>Rotas mais inteligentes para um futuro <span>mais limpo.</span></h1>
+  <p>O EcoLastMile ajuda a planejar entregas, reduzir quilômetros percorridos e acompanhar a estimativa de CO₂ evitado. Mais eficiência para a operação, menos impacto para o planeta.</p>
+  <div class="actions"><button class="primary" onclick="document.querySelector('#painel').scrollIntoView({behavior:'smooth'})">🌿 Começar agora</button><button class="secondary" onclick="document.querySelector('#como').scrollIntoView({behavior:'smooth'})">Saiba como funciona</button></div></div>
+  <div class="route-art" aria-label="Ilustração de rota de entregas"><div class="map-lines"></div><div class="route-path"></div><span class="pin one"><b>•</b></span><span class="pin two"><b>•</b></span><span class="pin three"><b>•</b></span><div class="van">🚚</div></div>
+ </div>
+</section>
+<main>
+ <section id="como">
+  <div class="section-title"><div><h2>Uma operação com propósito</h2><p>Planejamento simples para decisões logísticas mais conscientes.</p></div></div>
+  <div class="metrics">
+   <div class="metric"><div class="metric-top">📍 Entregas cadastradas <span class="metric-icon">↗</span></div><strong id="countMetric">3</strong><small>pontos na rota</small></div>
+   <div class="metric"><div class="metric-top">🛣️ Distância estimada <span class="metric-icon">↗</span></div><strong id="distanceMetric">24 km</strong><small>após otimização</small></div>
+   <div class="metric"><div class="metric-top">🌱 CO₂ evitado <span class="metric-icon">↗</span></div><strong id="co2Metric">2,1 kg</strong><small>estimativa ilustrativa</small></div>
+   <div class="metric"><div class="metric-top">⏱️ Tempo de rota <span class="metric-icon">↗</span></div><strong id="timeMetric">1h 20</strong><small>tempo estimado</small></div>
+  </div>
+ </section>
+ <section class="workspace" id="painel">
+  <div class="panel">
+   <h3>📦 Planejar entregas no Brasil</h3><p class="sub">Selecione o estado e depois a cidade. O EcoLastMile atualiza automaticamente a simulação ao adicionar ou remover destinos. As distâncias são estimativas ilustrativas.</p>
+   <form id="deliveryForm">
+    <div class="form-grid">
+     <div><label for="recipient">Destinatário / referência</label><input id="recipient" placeholder="Ex.: Cliente 04" required maxlength="60"></div>
+     <div><label for="state">Estado</label><select id="state" required><option value="">Selecione um estado</option>
+<option value="12">Acre</option><option value="27">Alagoas</option><option value="13">Amapá</option><option value="16">Amazonas</option><option value="29">Bahia</option><option value="23">Ceará</option><option value="53">Distrito Federal</option><option value="32">Espírito Santo</option><option value="52">Goiás</option><option value="21">Maranhão</option><option value="51">Mato Grosso</option><option value="50">Mato Grosso do Sul</option><option value="31">Minas Gerais</option><option value="15">Pará</option><option value="25">Paraíba</option><option value="41">Paraná</option><option value="26">Pernambuco</option><option value="22">Piauí</option><option value="33">Rio de Janeiro</option><option value="24">Rio Grande do Norte</option><option value="43">Rio Grande do Sul</option><option value="11">Rondônia</option><option value="14">Roraima</option><option value="42">Santa Catarina</option><option value="35">São Paulo</option><option value="28">Sergipe</option><option value="17">Tocantins</option>
+</select></div>
+<div><label for="address">Cidade</label><select id="address" required disabled><option value="">Selecione primeiro o estado</option></select></div>
+     <div><label for="neighborhood">Bairro da entrega</label><select id="neighborhood" required disabled><option value="">Selecione primeiro a cidade</option></select></div>
+     <div><label for="vehicle">Veículo</label><select id="vehicle"><option value="0.18">Van a diesel</option><option value="0.12">Moto</option><option value="0.02">Bicicleta elétrica</option></select></div>
+    </div>
+    <div class="form-actions"><button class="primary" type="submit">＋ Adicionar entrega</button></div>
+   </form>
+   <div class="table-wrap"><table><thead><tr><th>Destino</th><th>Distância</th><th>Veículo</th><th></th></tr></thead><tbody id="deliveryRows"></tbody></table></div>
+  </div>
+  <aside class="panel" id="impacto">
+   <h3>🗺️ Resumo da rota</h3>
+   <div class="route-map" style="height:340px;background:#eef3f5;position:relative">
+    <div id="routeMapCanvas" style="width:100%;height:100%;position:absolute;inset:0;background:#e8eef1"></div>
+   </div>
+  </aside>
+ </section>
+ <section id="co2" style="margin-top:24px">
+  <div class="panel">
+   <h3>🌱 Impacto ambiental da rota</h3>
+   <p class="sub">Comparação ilustrativa das emissões estimadas antes e depois da otimização da rota.</p>
+   <div class="comparison">
+    <div class="compare"><span>Antes da otimização</span><strong id="beforeCo2">0 kg CO₂</strong></div>
+    <div class="compare green"><span>Depois da otimização</span><strong id="afterCo2">0 kg CO₂</strong></div>
+   </div>
+   <div class="progress"><div id="progressBar" style="width:28%"></div></div>
+   <div style="display:flex;justify-content:space-between;font-size:12px;color:#62798b"><span>Redução estimada</span><b id="reductionLabel" style="color:#159447">28%</b></div>
+   <div class="tip" id="routeTip">✅ Simulação concluída: o sistema aplicou uma redução ilustrativa de 28% na distância e nas emissões da rota.</div>
+  </div>
+ </section>
+</main>
+<footer><div class="brand" style="color:white"><span class="brand-mark">C</span><div style="color:white">EcoLastMile <small style="color:#c8dbe8">Rotas inteligentes e sustentáveis em todo o Brasil.</small></div></div><div><b>Eficiência logística que preserva o amanhã.</b><p>Protótipo demonstrativo para planejamento de entregas e redução de emissões.</p></div><button class="yellow" onclick="window.scrollTo({top:0,behavior:'smooth'})">Voltar ao topo ↑</button></footer>
+<script>
+const rows=document.getElementById('deliveryRows');
+let deliveries=[];
+let optimized=true;
+const fmt=n=>n.toLocaleString('pt-BR',{maximumFractionDigits:1});
+// Distância ilustrativa para o protótipo.
+function estimateDistance(address){
+ const a=String(address).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+ const known=[['belem',1.5],['rio de janeiro',8],['sao paulo',12],['brasilia',10],['manaus',9],['salvador',10],['fortaleza',11],['recife',10],['curitiba',9],['porto alegre',10],['goiania',8],['belo horizonte',9],['vitoria',8],['natal',9],['joao pessoa',9],['maceio',9],['aracaju',9],['palmas',8],['macapa',8],['boa vista',8],['porto velho',8],['rio branco',8],['sao luis',9],['teresina',9],['cuiaba',9],['campo grande',9],['florianopolis',9],['sao bras',5.5]];
+ for(const [name,km] of known){if(a.includes(name))return km;}
+ return 6;
+}
+function render(){
+ rows.innerHTML='';
+ deliveries.forEach((d,i)=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><b>${escapeHtml(d.name)}</b><br><span style="color:#718797">${escapeHtml(d.address)}</span></td><td>${fmt(d.distance)} km</td><td>${escapeHtml(d.vehicle)}</td><td><button class="secondary" aria-label="Remover entrega" onclick="removeDelivery(${i})">✕</button></td>`;
+  rows.appendChild(tr);
+ });
+ updateLiveMap();
+ updateMetrics();
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function updateLiveMap(){
+ const el=document.getElementById('routeMapCanvas');
+ if(!el) return;
+ const last=deliveries.length?deliveries[deliveries.length-1]:null;
+ if(!last){
+   el.innerHTML=`<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#607789;text-align:center;padding:20px">Selecione um estado, cidade e bairro para visualizar a rota no Google Maps.</div>`;
+   return;
+ }
+ const neighborhood=last.neighborhood||'';
+ const city=last.city||'';
+ const state=last.state||'';
+ const origin=`Correios, ${neighborhood}, ${city}, ${state}, Brasil`;
+ const destination=`${neighborhood}, ${city}, ${state}, Brasil`;
+ const enc=v=>encodeURIComponent(v);
+ const embed=`https://www.google.com/maps?saddr=${enc(origin)}&daddr=${enc(destination)}&output=embed`;
+ const link=`https://www.google.com/maps/dir/?api=1&origin=${enc(origin)}&destination=${enc(destination)}&travelmode=driving`;
+ el.innerHTML=`
+ <div style="height:100%;display:flex;flex-direction:column;background:#eef3f5">
+   <iframe title="Rota no Google Maps" src="${embed}" style="width:100%;height:calc(100% - 44px);border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+   <div style="height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;background:white;border-top:1px solid #d9e2e7;font-size:12px;color:#506777;gap:10px">
+     <span>📮 Correios mais próximo → 📦 ${escapeHtml(neighborhood)}, ${escapeHtml(city)}</span>
+     <a href="${link}" target="_blank" rel="noopener" style="font-weight:700;color:#1677c8;text-decoration:none;white-space:nowrap">Abrir no Google Maps ↗</a>
+   </div>
+ </div>`;
+}
+function updateMetrics(){
+ const total=deliveries.reduce((s,d)=>s+d.distance,0);
+ const afterKm=optimized?total*.72:total;
+ const before=total*.18;
+ const after=deliveries.reduce((s,d)=>s+d.distance*d.factor,0)*(optimized?.72:1);
+ const saved=Math.max(0,before-after);
+ const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+ setText('countMetric',deliveries.length);
+ setText('distanceMetric',fmt(afterKm)+' km');
+ setText('co2Metric',fmt(saved)+' kg');
+ const mins=Math.round(afterKm*3.3);
+ setText('timeMetric',Math.floor(mins/60)+'h '+String(mins%60).padStart(2,'0'));
+ setText('beforeCo2',fmt(before)+' kg CO₂');
+ setText('afterCo2',fmt(after)+' kg CO₂');
+ const pct=before?Math.round(saved/before*100):0;
+ setText('reductionLabel',pct+'%');
+ const bar=document.getElementById('progressBar');if(bar)bar.style.width=pct+'%';
+ setText('routeTip',optimized?'✅ Simulação concluída: o sistema aplicou uma redução ilustrativa de 28% na distância e nas emissões da rota.':'💡 Adicione um destino para simular a rota e comparar a estimativa de emissões.');
+}
+const stateSelect=document.getElementById('state');
+const citySelect=document.getElementById('address');
+stateSelect.addEventListener('change',async()=>{
+ citySelect.innerHTML='<option value="">Carregando cidades...</option>'; citySelect.disabled=true;
+ if(!stateSelect.value){citySelect.innerHTML='<option value="">Selecione primeiro o estado</option>';neighborhoodSelect.innerHTML='<option value="">Selecione primeiro a cidade</option>';neighborhoodSelect.disabled=true;return;}
+ try{
+  const r=await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados/'+stateSelect.value+'/municipios');
+  if(!r.ok) throw new Error('Falha ao consultar cidades');
+  const cities=await r.json();
+  citySelect.innerHTML='<option value="">Selecione uma cidade</option>'+cities.sort((a,b)=>a.nome.localeCompare(b.nome,'pt-BR')).map(c=>`<option value="${escapeHtml(c.nome)}">${escapeHtml(c.nome)}</option>`).join('');
+  citySelect.disabled=false;
+  neighborhoodSelect.disabled=true;
+ }catch(err){
+  citySelect.innerHTML='<option value="">Não foi possível carregar as cidades</option>';
+  citySelect.disabled=true;
+ }
+});
+
+const neighborhoodSelect=document.getElementById('neighborhood');
+
+// Bairros/localidades de referência para as cidades mais usadas no protótipo.
+// Para outras cidades, o sistema mostra opções genéricas para não deixar o campo vazio.
+const bairrosPorCidade={
+ 'Belém':['Batista Campos','Campina','Cidade Velha','Cremação','Guamá','Marco','Marambaia','Nazaré','Pedreira','Reduto','Sacramenta','São Brás','Telégrafo','Umarizal'],
+ 'Ananindeua':['Águas Brancas','Centro','Coqueiro','Distrito Industrial','Guajará','Icuí-Guajará','Jardim Nova Vida','Maguelândia','40 Horas','Quarenta Horas','Cidade Nova'],
+ 'Rio de Janeiro':['Botafogo','Copacabana','Centro','Catete','Flamengo','Ipanema','Jacarepaguá','Leblon','Méier','Tijuca','Vila Isabel','Santa Teresa'],
+ 'São Paulo':['Bela Vista','Bom Retiro','Butantã','Centro','Consolação','Ipiranga','Moema','Mooca','Pinheiros','Santana','Saúde','Tatuapé','Vila Mariana','Vila Prudente'],
+ 'Belo Horizonte':['Anchieta','Barreiro','Buritis','Centro','Cidade Nova','Floresta','Funcionários','Lourdes','Pampulha','Prado','Savassi','Sion'],
+ 'Brasília':['Asa Norte','Asa Sul','Águas Claras','Ceilândia','Cruzeiro','Gama','Guará','Lago Norte','Lago Sul','Samambaia','Taguatinga'],
+ 'Curitiba':['Água Verde','Batel','Boa Vista','Centro','Centro Cívico','Hauer','Jardim Social','Mercês','Portão','Rebouças','Santa Felicidade','São Francisco'],
+ 'Porto Alegre':['Auxiliadora','Azenha','Bela Vista','Bom Fim','Centro Histórico','Cidade Baixa','Cristal','Menino Deus','Moinhos de Vento','Petrópolis','Partenon','Tristeza'],
+ 'Salvador':['Barra','Brotas','Cabula','Caminho das Árvores','Centro','Comércio','Itapuã','Liberdade','Ondina','Pituba','Rio Vermelho','Stella Maris'],
+ 'Recife':['Boa Viagem','Boa Vista','Casa Amarela','Casa Forte','Cordeiro','Graças','Ibura','Imbiribeira','Madalena','Pina','Santo Amaro','Várzea'],
+ 'Fortaleza':['Aldeota','Aerolândia','Barra do Ceará','Benfica','Centro','Cidade 2000','Cocó','Meireles','Montese','Parangaba','Papicu','Praia de Iracema'],
+ 'Manaus':['Adrianópolis','Aleixo','Centro','Cidade Nova','Compensa','Flores','Japiim','Parque 10 de Novembro','Ponta Negra','São José Operário','Tarumã'],
+ 'Goiânia':['Bueno','Campinas','Centro','Cidade Jardim','Finsocial','Jardim América','Jardim Goiás','Marista','Setor Oeste','Setor Pedro Ludovico','Universitário'],
+ 'São Luís':['Anil','Calhau','Centro','Cohab Anil','Cohama','Cohatrac','Forquilha','Renascença','São Francisco','Turu','Vinhais'],
+ 'Natal':['Alecrim','Areia Preta','Candelária','Capim Macio','Cidade Alta','Lagoa Nova','Neópolis','Pajuçara','Petrópolis','Ponta Negra','Tirol'],
+ 'João Pessoa':['Aeroclube','Altiplano','Bancários','Bessa','Centro','Manaíra','Mangabeira','Miramar','Tambaú','Torre','Valentina'],
+ 'Maceió':['Antares','Benedito Bentes','Cruz das Almas','Farol','Jatiúca','Jaraguá','Mangabeiras','Pajuçara','Ponta Verde','Poço','Tabuleiro do Martins'],
+ 'Aracaju':['13 de Julho','Atalaia','Bugio','Centro','Coroa do Meio','Farolândia','Grageru','Industrial','Jardins','Luzia','Siqueira Campos'],
+ 'Vitória':['Bento Ferreira','Centro','Enseada do Suá','Goiabeiras','Jardim da Penha','Jardim Camburi','Maruípe','Praia do Canto','Santa Lúcia','Tabuazeiro'],
+ 'Campo Grande':['Amambaí','Carandá Bosque','Centro','Coronel Antonino','Jardim dos Estados','Jardim Noroeste','Mata do Jacinto','Monte Castelo','Tiradentes','Universitário'],
+ 'Cuiabá':['Araés','Boa Esperança','Centro','CPA','Duque de Caxias','Jardim Itália','Jardim Imperial','Morada do Ouro','Popular','Quilombo','Santa Rosa'],
+ 'Porto Velho':['Agenor de Carvalho','Areia Branca','Centro','Cuniã','Embratel','Industrial','Jardim Santana','Nova Porto Velho','Olaria','Pedrinhas','São Cristóvão'],
+ 'Rio Branco':['Bosque','Centro','Estação Experimental','Floresta','Jardim Primavera','João Eduardo','Placas','Sobral','Vila Ivonete'],
+ 'Macapá':['Alvorada','Central','Congós','Infraero','Jardim Equatorial','Jardim Felicidade','Jesus de Nazaré','Marco Zero','Pacoval','Santa Inês'],
+ 'Boa Vista':['Aeroporto','Asa Branca','Caçari','Centro','Cauamé','Cinturão Verde','Mecejana','Paraviana','Pricumã','São Pedro'],
+ 'Palmas':['Aureny','Centro','Jardim Aureny','Plano Diretor Norte','Plano Diretor Sul','Taquaralto','Taquari'],
+ 'Teresina':['Aeroporto','Centro','Fátima','Ininga','Itararé','Jóquei','Matadouro','Mocambinho','Monte Castelo','Piçarra','São Cristóvão','São João'],
+ 'Niterói':['Barreto','Cafubá','Charitas','Fonseca','Icaraí','Ingá','Itaipu','Jurujuba','Piratininga','Santa Rosa','São Francisco','São Lourenço','Vital Brazil'],
+ 'São Gonçalo':['Alcântara','Barro Vermelho','Boaçu','Brasilândia','Colubandê','Estrela do Norte','Jardim Catarina','Mutondo','Neves','Paraíso','Porto da Pedra','Porto Novo','Rocha','Tribobó','Trindade','Venda da Cruz','Zé Garoto'],
+ 'Duque de Caxias':['25 de Agosto','Bar dos Cavaleiros','Centro','Gramacho','Imbariê','Jardim Primavera','Jardim Gramacho','Parque Fluminense','Parque Lafaiete','Parque Paulistânia','Saracuruna','Vila São Luís'],
+ 'Nova Iguaçu':['Austin','Cabuçu','Centro','Comendador Soares','Da Luz','Engenho Pequeno','Miguel Couto','Posse','Rancho Novo','Santa Eugênia','Tinguá','Vila de Cava'],
+ 'São José dos Campos':['Aquarius','Centro','Eugênio de Melo','Jardim América','Jardim Satélite','Monte Castelo','Parque Industrial','Putim','Santana','Urbanova','Vila Adyana'],
+ 'Campinas':['Barão Geraldo','Cambuí','Centro','Jardim Aurélia','Jardim Chapadão','Jardim Flamboyant','Jardim Nova Europa','Jardim Proença','Jardim das Paineiras','Taquaral','Vila Industrial','Vila Nova'],
+ 'Santos':['Aparecida','Boqueirão','Campo Grande','Centro','Embaré','Gonzaga','Macuco','Marapé','Ponta da Praia','Pompeia','Vila Belmiro','Vila Mathias'],
+ 'Ribeirão Preto':['Campos Elíseos','Centro','Jardim América','Jardim Irajá','Jardim Paulista','Jardim Sumaré','Nova Ribeirânia','Ribeirânia','Sumarezinho','Vila Tibério'],
+ 'Londrina':['Centro','Cinco Conjuntos','Gleba Palhano','Jardim Bandeirantes','Jardim Leonor','Jardim Shangri-Lá','Jardim Universitário','Sabará','Vila Casoni','Vila Brasil'],
+ 'Joinville':['América','Anita Garibaldi','Atiradores','Boa Vista','Bucarein','Centro','Costa e Silva','Floresta','Glória','Iririú','Saguaçu','Santo Antônio','Vila Nova']
+};
+
+function carregarBairros(){
+ const cidade=citySelect.value;
+ const bairros=bairrosPorCidade[cidade] || [];
+ neighborhoodSelect.innerHTML=bairros.length ? '<option value="">Selecione um bairro</option>'+bairros.sort((a,b)=>a.localeCompare(b,'pt-BR')).map(b=>`<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') : '<option value="">Bairros não cadastrados para esta cidade</option>';
+ neighborhoodSelect.disabled=!cidade || bairros.length===0;
+}
+
+citySelect.addEventListener('change',carregarBairros);
+
+document.getElementById('deliveryForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const address=document.getElementById('address').value.trim();
+ const neighborhood=document.getElementById('neighborhood').value.trim();
+ const stateName=stateSelect.options[stateSelect.selectedIndex]?.text||'';
+ if(!stateSelect.value||!address||!neighborhood)return;
+ const fullAddress=neighborhood+', '+address+', '+stateName;
+ const dist=estimateDistance(address);
+
+ const sel=document.getElementById('vehicle');
+ deliveries.push({name:document.getElementById('recipient').value.trim(),address:fullAddress,neighborhood,city:address,state:stateName,distance:dist,vehicle:sel.options[sel.selectedIndex].text,factor:Number(sel.value)});
+ optimized=true;render();e.target.reset(); citySelect.innerHTML='<option value="">Selecione primeiro o estado</option>'; citySelect.disabled=true; neighborhoodSelect.disabled=true;
+});
+window.removeDelivery=i=>{deliveries.splice(i,1);optimized=true;render();};
+
+render();
+</script>
+</body>
+</html>
